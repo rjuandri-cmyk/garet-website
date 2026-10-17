@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07100c">
+  <title>GARET Admin — Airdrop Records</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/admin.js" defer></script>
+</head>
+<body class="admin-body">
+  <header class="site-header"><a class="brand" href="/"><span class="brand-mark">G</span><span>GARET<span class="brand-dot">.</span></span></a><nav class="admin-nav"><a href="/">← Public Website</a></nav></header>
+  <main class="admin-main">
+    <div class="admin-top"><div><div class="section-kicker">ADMIN / AIRDROP MANAGEMENT</div><h1>Distribution records</h1><p>Manual tracking only. This panel does not send tokens.</p></div><button class="btn btn-ghost hidden" id="logoutBtn">Log out</button></div>
+
+    <section class="admin-card" id="loginPanel">
+      <h2>Admin sign in</h2>
+      <form id="loginForm">
+        <div class="field"><label for="adminPassword">Admin password</label><input id="adminPassword" type="password" autocomplete="current-password" required minlength="1"></div>
+        <button class="btn btn-primary" type="submit" style="margin-top:14px">Sign in <span>↗</span></button>
+      </form>
+      <p class="admin-message" id="loginMessage" aria-live="polite"></p>
+      <p class="muted" style="font-size:.8rem">Set ADMIN_PASSWORD and SESSION_SECRET in your hosting environment before launch.</p>
+    </section>
+
+    <div id="dashboard" class="hidden">
+      <section class="admin-card">
+        <h2>Add a recipient</h2>
+        <form id="recipientForm" class="form-grid">
+          <div class="field"><label for="walletAddress">Wallet address (BNB Smart Chain)</label><input id="walletAddress" placeholder="0x..." required spellcheck="false" autocomplete="off"></div>
+          <div class="field"><label for="amount">Planned amount (GARET)</label><input id="amount" inputmode="decimal" placeholder="1000" required></div>
+          <div class="field span-two"><label for="note">Note (optional)</label><input id="note" maxlength="300" placeholder="Campaign / eligibility note"></div>
+          <div class="span-two"><button class="btn btn-primary" type="submit">Add recipient <span>＋</span></button></div>
+        </form>
+        <p class="admin-message" id="addMessage" aria-live="polite"></p>
+      </section>
+
+      <section class="admin-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><h2 style="margin:0">Recipient list</h2><div class="table-actions"><button class="small-btn" id="refreshBtn">Refresh</button><button class="small-btn" id="exportBtn">Export CSV</button></div></div>
+        <p class="muted" style="font-size:.8rem">After sending tokens separately from your authorized wallet, update the status and add the transaction hash.</p>
+        <p class="admin-message" id="listMessage" aria-live="polite"></p>
+        <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>ID / Wallet</th><th>Amount</th><th>Status</th><th>Tx hash</th><th>Actions</th></tr></thead><tbody id="recipientRows"><tr><td colspan="5" class="muted">Sign in to view records.</td></tr></tbody></table></div>
+      </section>
+      <section class="admin-card"><h2>Safety reminder</h2><p class="muted" style="font-size:.85rem;margin-bottom:0">Never enter a seed phrase or private key here. “Paid” status is an admin record only and is not verified on-chain by this app. Verify each transaction in the block explorer.</p></section>
+    </div>
+  </main>
+</body>
+</html>
